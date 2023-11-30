@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mDd = dbHelper.getWritableDatabase();
 
         // TODO (4) call insertFakeData from TestUtil and pass the database reference mDb
-        TestUtil.insertFakeData(mDd);
+        //TestUtil.insertFakeData(mDd);
 
         // TODO (7) Run the getAllGuests function and store the result in a Cursor variable
         Cursor cursor = getAllGuests();
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO make the UI look nice, call .getText().clear() on both EditTexts, also call clearFocus() on mNewPartSize
         // COMPLETED (20) To make the UI look nice, call .getText().clear() on both EditTexts, also call clearFocus() on mNewPartySizeEditText
         //clear UI text fields
+
         mNewPartySizeEditText.clearFocus();
         mNewGuestNameEditText.getText().clear();
         mNewPartySizeEditText.getText().clear();
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         contentValues.put(WaitListContract.WaitlistEntry.COLUMN_PARTY_SIZE, partySize);
 
         long operationId = mDd.insert(WaitListContract.WaitlistEntry.TABLE_NAME, null, contentValues);
-        Log.d(LOG_TAG, "Opeartion ID_ " + operationId);
+        Log.d(LOG_TAG, "Operation ID_ " + operationId);
         return operationId;
     }
 }
