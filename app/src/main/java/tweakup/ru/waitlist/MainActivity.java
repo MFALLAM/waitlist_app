@@ -1,17 +1,17 @@
 package tweakup.ru.waitlist;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import tweakup.ru.waitlist.data.TestUtil;
-import tweakup.ru.waitlist.data.WaitListDbHelper;
 import tweakup.ru.waitlist.data.WaitListContract;
+import tweakup.ru.waitlist.data.WaitListDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = getAllGuests();
 
         // TODO (12) Pass the resulting cursor count to the adapter
-        mAdapter = new GuestListAdapter(this, cursor.getCount());
+        mAdapter = new GuestListAdapter(this, cursor);
         // Link the adapter to the RecyclerView
         waitlistRecyclerView.setAdapter(mAdapter);
     }
