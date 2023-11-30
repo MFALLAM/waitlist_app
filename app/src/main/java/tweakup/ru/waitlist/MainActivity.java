@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText mNewGuestNameEditText;
     private EditText mNewPartySizeEditText;
 
+    SearchView mSearchView;
+    RecyclerView waitlistRecyclerView;
+
     private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -38,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         mNewGuestNameEditText = findViewById(R.id.person_name_edit_text);
         mNewPartySizeEditText = findViewById(R.id.party_count_edit_text);
+        waitlistRecyclerView = findViewById(R.id.all_guest_list_view);
+        mSearchView = findViewById(R.id.searchView);
+        mSearchView.clearFocus();
 
-        RecyclerView waitlistRecyclerView;
-
-        // Set local attributes to corresponding views
-        waitlistRecyclerView = (RecyclerView) this.findViewById(R.id.all_guest_list_view);
 
         // Set layout for the RecyclerView, because it's a list we are using the linear layout
         waitlistRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,6 +66,23 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new GuestListAdapter(this, cursor);
         // Link the adapter to the RecyclerView
         waitlistRecyclerView.setAdapter(mAdapter);
+
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterGuests(newText);
+                return true;
+            }
+        });
+    }
+
+    private void filterGuests(String search) {
+
     }
 
     /**
